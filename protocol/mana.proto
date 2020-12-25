@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package mana;
+
+
+message ManaMessageCommonHeader {
+    uint32 size = 1;
+    uint32 version = 2;
+}
+
+message ManaExtension {
+
+}
+
+message ManaMessage {
+    uint64 msg_id = 1;
+    uint64 trace_id = 2;
+    uint32 type = 3;
+    uint32 payload_length = 4;
+    string common_name = 5;
+    ManaExtension extension = 6;
+    int32 protocol_errcode = 10;
+    string protocol_errmsg = 11;
+    bytes payload = 20;
+}
+
+message ManaRequest {
+    string caller = 1;
+    string callee = 2;
+    bytes payload = 3;
+}
+
+message ManaResponse {
+    string caller = 1;
+    string callee = 2;
+    int32 sys_errcode = 3;
+    string sys_errmsg = 4;
+    int32 biz_errcode = 5;
+    string biz_errmsg = 6;
+    bytes payload = 7;
+}
+
+enum ManaAddrProtocol {
+    IPV4 = 0;
+}
+
+message ManaRegisterRequest {
+    string service_name = 1;
+    string ip = 2;
+    uint32 port = 3;
+    ManaAddrProtocol protocol = 4;
+}
+
+message ManaRegisterResponse {
+
+}
