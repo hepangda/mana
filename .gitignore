@@ -33,3 +33,6 @@
 
 # Bazel Outs
 bazel-*
+
+# Editor
+.vscode
